@@ -74,42 +74,49 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav font-weight-bold mx-auto py-0">
-
                     <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Accueil</a>
-                    <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}"">A Propos Nous</a>
-                    <a href=" /contact" class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}"">Contactez-Nous</a>
+                    @guest
+
+                        <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">A Propos
+                            Nous</a>
+                        <a href=" /contact"
+                            class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Contactez-Nous</a>
+                    @else
+                        <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">A Propos
+                            Nous</a>
+                    @endguest
                 </div>
                 <!-- Right Side Of Navbar -->
                 <ul class="  navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <a href="{{ route('login') }}" class="btn btn-primary text-nowrap">Se Connecter</a>
-                            @endif
-                        @else
-                            <div class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <a href="{{ route('login') }}" class="btn btn-primary text-nowrap">Se Connecter</a>
+                        @endif
+                    @else
+                        <div class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                                                                                             document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    class="d-none">
+                                    @csrf
+                                </form>
                             </div>
-                        @endguest
-                        </ul>
+                        </div>
+                    @endguest
+                </ul>
 
-                </div>
+            </div>
         </nav>
     </div>
     <!-- Navbar End -->
