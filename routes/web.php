@@ -23,9 +23,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//No Auth
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/about', function () {
+    return view('internaute.about');
+});
+
+
+Route::get('/contact', function () {
+    return view('internaute.contact');
+});
+
+
 
 //Route::group(['middleware' => ['auth']], function () {
 Route::get('/matieres', [MatiereController::class, 'index'])->name('matieres');
