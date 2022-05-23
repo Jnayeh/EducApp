@@ -17,21 +17,27 @@
         <div class="container">
             <div class="row align-items-center">
 
-                <div class="col-lg-7">
+                <div class="col">
                     <p class="section-title pr-5"><span class="pr-2">A Propos Nous</span></p>
                     <h1 class="mb-4">Meilleure Application d'Education</h1>
 
                     <div class="row pt-2 pb-4">
                         <div class="col-6 col-md-4">
-                            <img class="img-fluid rounded" src="img/about-2.jpg" alt="">
+                            <img class="img-fluid rounded" width="100%" src="img/about-2.jpg" alt="">
                         </div>
                         <div class="col-6 col-md-8">
                             <ul class="list-inline m-0">
-                                <li class="py-2 border-top border-bottom"><i
-                                        class="fa fa-check text-primary mr-3"></i>Gestion des homeworks</li>
                                 <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Gestion
                                     des
                                     classes</li>
+                                <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Gestion
+                                    des
+                                    matieres</li>
+                                <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Gestion des homeworks</li>
+                                <li class="py-2 border-top border-bottom"><i
+                                        class="fa fa-check text-primary mr-3"></i>Gestion des réponses</li>
+
                                 <li class="py-2 border-bottom"><i class="fa fa-check text-primary mr-3"></i>Communication
                                     entre les
                                     enseignants
@@ -39,7 +45,6 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="/about" class="btn btn-primary mt-2 py-2 px-4">En savoir plus</a>
                 </div>
             </div>
         </div>
