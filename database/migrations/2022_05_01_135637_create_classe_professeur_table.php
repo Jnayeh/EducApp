@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassesProfesseursTable extends Migration
+class CreateClasseProfesseurTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClassesProfesseursTable extends Migration
      */
     public function up()
     {
-        Schema::create('classes_professeurs', function (Blueprint $table) {
+        Schema::create('classe_professeur', function (Blueprint $table) {
             $table->UnsignedBigInteger('classe_id');
             $table->foreign('classe_id')->references('id')->on('classes')
                 ->onDelete('cascade');
@@ -33,6 +33,6 @@ class CreateClassesProfesseursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classes_professeurs');
+        Schema::dropIfExists('classe_professeur');
     }
 }

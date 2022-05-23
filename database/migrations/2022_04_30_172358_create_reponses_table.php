@@ -20,6 +20,9 @@ class CreateReponsesTable extends Migration
             $table->UnsignedBigInteger('eleve_id');
             $table->foreign('eleve_id')->references('id')->on('eleves')
                 ->onDelete('cascade');
+            $table->UnsignedBigInteger('home_work_id');
+            $table->foreign('home_work_id')->references('id')->on('home_works')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

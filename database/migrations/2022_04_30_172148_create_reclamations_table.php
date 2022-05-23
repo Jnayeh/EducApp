@@ -17,8 +17,8 @@ class CreateReclamationsTable extends Migration
             $table->id();
             $table->text('titre');
             $table->text('details');
-            $table->UnsignedBigInteger('parent_id');
-            $table->foreign('parent_id')->references('id')->on('parents')
+            $table->UnsignedBigInteger('eleve_id');
+            $table->foreign('eleve_id')->references('id')->on('eleves')
                 ->onDelete('cascade');
 
             $table->UnsignedBigInteger('professeur_id');

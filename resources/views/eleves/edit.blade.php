@@ -71,13 +71,9 @@
                                 <select class="custom-select" name="parent_id">
                                     <option value="">Choisir...</option>
                                     @foreach ($parents as $parent)
-                                        @if ($parent->id == $eleve->parent_id)
-                                            <option selected value="{{ $parent->id }}">
-                                                {{ $parent->name }}</option>
-                                        @else
-                                            <option value="{{ $parent->id }}">
-                                                {{ $parent->name }}</option>
-                                        @endif
+                                        <option value="{{ $parent->id }}"
+                                            {{ $parent->id == $eleve->parent_id ? 'selected' : '' }}>
+                                            {{ $parent->name }}</option>
                                     @endforeach
 
                                 </select>
@@ -91,13 +87,9 @@
                                 <select class="custom-select" name="classe_id">
                                     <option value="">Choisir...</option>
                                     @foreach ($classes as $classe)
-                                        @if ($classe->id == $eleve->classe_id)
-                                            <option selected value="{{ $classe->id }}">
-                                                {{ $classe->nom }}</option>
-                                        @else
-                                            <option value="{{ $classe->id }}">
-                                                {{ $classe->nom }}</option>
-                                        @endif
+                                        <option value="{{ $classe->id }}"
+                                            {{ $classe->id == $eleve->classe_id ? 'selected' : '' }}>
+                                            {{ $classe->nom }}</option>
                                     @endforeach
 
                                 </select>

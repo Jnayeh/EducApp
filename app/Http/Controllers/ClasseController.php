@@ -45,7 +45,7 @@ class ClasseController extends Controller
         $classe = new Classe();
         $classe->fill($request->all());
 
-        if( $request->hasFile('emploi_elv')){
+        if ($request->hasFile('emploi_elv')) {
             $emploi = $request->file('emploi_elv');
             $filename = date('YmdHi') . $emploi->getClientOriginalName();
 
@@ -61,13 +61,19 @@ class ClasseController extends Controller
     public function show($id)
     {
         $classe = Classe::find($id);
-        return view('classes.show', compact('classe'));
+        if ($classe) {
+            return view('classes.show', compact('classe'));
+        }
+        abort(404);
     }
 
     public function edit($id)
     {
         $classe = Classe::find($id);
-        return view('classes.edit', compact('classe'));
+        if ($classe) {
+            return view('classes.edit', compact('classe'));
+        }
+        abort(404);
     }
 
     public function update($id, Request $request)
@@ -81,7 +87,7 @@ class ClasseController extends Controller
         $classe = Classe::find($id);
         $classe->fill($request->all());
 
-        if( $request->hasFile('emploi_elv')){
+        if ($request->hasFile('emploi_elv')) {
             $emploi = $request->file('emploi_elv');
             $filename = date('YmdHi') . $emploi->getClientOriginalName();
 

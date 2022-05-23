@@ -78,6 +78,16 @@
                                 <span class="text-danger m-2">{{ $errors->first('matiere_id') }}</span>
                             @endif
 
+                            @foreach ($classes as $classe)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="classes[]"
+                                        value="{{ $classe->id }}" id="{{ $classe->id }}">
+                                    <label class="form-check-label" for="{{ $classe->id }}">
+                                        {{ $classe->nom . ' niveau: ' . $classe->niveau }}
+                                    </label>
+                                </div>
+                            @endforeach
+
                             <button type="submit" class="btn btn-primary mt-2 w-100">Ajouter</button>
                         </form>
                     </div>

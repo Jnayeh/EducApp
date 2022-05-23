@@ -70,13 +70,9 @@
                                 </div>
                                 <select class="custom-select" name="matiere_id">
                                     @foreach ($matieres as $matiere)
-                                        @if ($matiere->id == $professeur->matiere_id)
-                                            <option selected value="{{ $matiere->id }}">
-                                                {{ $matiere->nom }}</option>
-                                        @else
-                                            <option value="{{ $matiere->id }}">
-                                                {{ $matiere->nom }}</option>
-                                        @endif
+                                        <option value="{{ $matiere->id }}"
+                                            {{ $matiere->id == $professeur->matiere_id ? 'selected' : '' }}>
+                                            {{ $matiere->nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -84,6 +80,25 @@
                             @if ($errors->has('matiere_id'))
                                 <span class="text-danger m-2">{{ $errors->first('matiere_id') }}</span>
                             @endif
+                            <div class=" m-2 mt-4">
+                                <div>
+                                    <label for="">Classes</label>
+                                </div>
+
+
+
+                                @foreach ($classes as $classe)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="classes[]"
+                                            value="{{ $classe->id }}" id="{{ $classe->id }}"
+                                            {{ $professeur->classes->contains($classe) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ $classe->id }}">
+                                            {{ $classe->nom . ' ' . $classe->niveau }}
+                                        </label>
+                                    </div>
+                                @endforeach
+
+                            </div>
 
 
                             <button type="submit" class="btn btn-primary mt-2">Modifier</button>

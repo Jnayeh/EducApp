@@ -23,7 +23,7 @@
                                 <td>{{ $matiere->nom }}</td>
                                 <td>{{ $matiere->coefficient }}</td>
                                 <td>{{ date('Y-m-d', strtotime($matiere->created_at)) }}</td>
-                                <td class="d-flex justify-content-center gap-md-2">
+                                <td class="d-flex justify-content-center  gap-md-2">
                                     <a href="matieres/{{ $matiere->id }}" class="btn btn-outline-secondary">Afficher</a>
                                     <a href="matieres/{{ $matiere->id }}/edit" class="btn btn-primary">Modifier</a>
                                     <form action="matieres/{{ $matiere->id }}" method="post" class="d-inline">

@@ -32,7 +32,7 @@ class Parents extends Model
 
     public function reclamations()
     {
-        return $this->hasMany(Reclamation::class);
+        return $this->hasManyThrough(Reclamation::class, Eleve::class);
     }
 
     public function eleves()

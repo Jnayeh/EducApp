@@ -15,11 +15,16 @@ class Reponse extends Model
      */
     protected $fillable = [
         'photos',
+        'home_work_id',
         'eleve_id',
     ];
 
     public function eleve()
     {
         return $this->belongsTo(Eleve::class);
+    }
+    public function homeWork()
+    {
+        return $this->belongsTo(HomeWork::class);
     }
 }

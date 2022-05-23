@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\BulletinNoteController;
 use App\Http\Controllers\ClasseController;
-use App\Http\Controllers\EleveController;
-use App\Http\Controllers\EmploiElvController;
 use App\Http\Controllers\EmploiProfController;
+use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\MatiereController;
+use App\Http\Controllers\EleveController;
 use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\ReclamationController;
+use App\Http\Controllers\ReponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +43,6 @@ Route::get('classes/{id}/edit', [ClasseController::class, 'edit']);
 Route::get('classes/{id}', [ClasseController::class, 'show']);
 Route::put('classes/{id}', [ClasseController::class, 'update']);
 Route::delete('classes/{id}', [ClasseController::class, 'destroy']);
-
 
 
 /* USERS */
@@ -80,15 +82,50 @@ Route::get('professeur/{id}/emplois_prof', [EmploiProfController::class, 'showBy
 Route::put('emplois_prof/{id}', [EmploiProfController::class, 'update']);
 Route::delete('emplois_prof/{id}', [EmploiProfController::class, 'destroy']);
 
-/* 
-Route::get('/emplois_elv', [EmploiElvController::class, 'index'])->name('emplois_elv');
-Route::get('emplois_elv/create', [EmploiElvController::class, 'create']);
-Route::post('emplois_elv', [EmploiElvController::class, 'store']);
-Route::get('emplois_elv/{id}/edit', [EmploiElvController::class, 'edit']);
-Route::get('emplois_elv/{id}', [EmploiElvController::class, 'show']);
-Route::put('emplois_elv/{id}', [EmploiElvController::class, 'update']);
-Route::delete('emplois_elv/{id}', [EmploiElvController::class, 'destroy']);
- */
+/* Home Work */
+
+Route::get('/home_works', [HomeWorkController::class, 'index'])->name('home_works');
+Route::get('home_works/create', [HomeWorkController::class, 'create']);
+Route::post('home_works', [HomeWorkController::class, 'store']);
+Route::get('home_works/{id}/edit', [HomeWorkController::class, 'edit']);
+Route::get('home_works/{id}', [HomeWorkController::class, 'show']);
+Route::get('professeur/{id}/home_works', [HomeWorkController::class, 'showByProf']);
+Route::put('home_works/{id}', [HomeWorkController::class, 'update']);
+Route::delete('home_works/{id}', [HomeWorkController::class, 'destroy']);
+
+/* Reponses */
+
+Route::get('/reponses', [ReponseController::class, 'index'])->name('reponses');
+Route::get('reponses/create', [ReponseController::class, 'create']);
+Route::post('reponses', [ReponseController::class, 'store']);
+Route::get('reponses/{id}/edit', [ReponseController::class, 'edit']);
+Route::get('reponses/{id}', [ReponseController::class, 'show']);
+Route::get('professeur/{id}/reponses', [ReponseController::class, 'showByProf']);
+Route::put('reponses/{id}', [ReponseController::class, 'update']);
+Route::delete('reponses/{id}', [ReponseController::class, 'destroy']);
+
+/* Reclamations */
+
+Route::get('/reclamations', [ReclamationController::class, 'index'])->name('reclamations');
+Route::get('reclamations/create', [ReclamationController::class, 'create']);
+Route::post('reclamations', [ReclamationController::class, 'store']);
+Route::get('reclamations/{id}/edit', [ReclamationController::class, 'edit']);
+Route::get('reclamations/{id}', [ReclamationController::class, 'show']);
+Route::get('professeur/{id}/reclamations', [ReclamationController::class, 'showByProf']);
+Route::put('reclamations/{id}', [ReclamationController::class, 'update']);
+Route::delete('reclamations/{id}', [ReclamationController::class, 'destroy']);
+
+
+/* Bulletins des notes */
+
+Route::get('/bulletins', [BulletinNoteController::class, 'index'])->name('bulletins');
+Route::get('bulletins/create', [BulletinNoteController::class, 'create']);
+Route::post('bulletins', [BulletinNoteController::class, 'store']);
+Route::get('bulletins/{id}/edit', [BulletinNoteController::class, 'edit']);
+Route::get('bulletins/{id}', [BulletinNoteController::class, 'show']);
+Route::get('eleve/{id}/bulletins', [BulletinNoteController::class, 'showByEleve']);
+Route::put('bulletins/{id}', [BulletinNoteController::class, 'update']);
+Route::delete('bulletins/{id}', [BulletinNoteController::class, 'destroy']);
 
 //});
 

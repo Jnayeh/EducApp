@@ -18,7 +18,7 @@ class Reclamation extends Model
         'titre',
         'details',
         'professeur_id',
-        'parent_id',
+        'eleve_id',
     ];
 
     public function professeur()
@@ -29,5 +29,9 @@ class Reclamation extends Model
     public function parent()
     {
         return $this->belongsTo(Parents::class);
+    }
+    public function eleve()
+    {
+        return $this->belongsTo(Eleve::class);
     }
 }

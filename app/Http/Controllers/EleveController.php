@@ -63,18 +63,23 @@ class EleveController extends Controller
 
     public function show($id)
     {
-        $eleve = Eleve::with('classe', 'parent')->find($id);;
-        return view('eleves.show', compact('eleve'));
+        $eleve = Eleve::with('classe', 'parent')->find($id);
+        if ($eleve) {
+            return view('eleves.show', compact('eleve'));
+        }
+        abort(404);
     }
 
     public function edit($id)
     {
         $eleve = Eleve::find($id);
-
-        /* list pour select */
-        $parents = Parents::all();
-        $classes = Classe::all();
-        return view('eleves.edit')->with(compact('eleve', 'parents', 'classes'));
+        if ($eleve) {
+            /* list pour select */
+            $parents = Parents::all();
+            $classes = Classe::all();
+            return view('eleves.edit')->with(compact('eleve', 'parents', 'classes'));
+        }
+        abort(404);
     }
 
     public function update($id, Request $request)

@@ -23,4 +23,8 @@ class HomeWork extends Model
     {
         return $this->belongsTo(Professeur::class);
     }
+    public function reponses()
+    {
+        return $this->hasMany(Reponse::class);
+    }
 }

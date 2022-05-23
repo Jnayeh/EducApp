@@ -31,10 +31,6 @@ class CreateElevesTable extends Migration
             $table->UnsignedBigInteger('classe_id')->nullable();
             $table->foreign('classe_id')->references('id')->on('classes')
                 ->onDelete('cascade');
-
-            /* $table->UnsignedBigInteger('emploi_id')->nullable();
-            $table->foreign('emploi_id')->references('id')->on('emploi_elvs')
-                ->onDelete('cascade'); */
         });
     }
 

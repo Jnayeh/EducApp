@@ -60,13 +60,19 @@ class ParentsController extends Controller
     public function show($id)
     {
         $parent = Parents::find($id);
-        return view('parents.show', compact('parent'));
+        if ($parent) {
+            return view('parents.show', compact('parent'));
+        }
+        abort(404);
     }
 
     public function edit($id)
     {
         $parent = Parents::find($id);
-        return view('parents.edit')->with(compact('parent'));
+        if ($parent) {
+            return view('parents.edit')->with(compact('parent'));
+        }
+        abort(404);
     }
 
     public function update($id, Request $request)

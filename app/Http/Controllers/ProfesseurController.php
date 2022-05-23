@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Matiere;
 use App\Models\Professeur;
 use App\Models\User;
@@ -32,7 +33,9 @@ class ProfesseurController extends Controller
     {
         /* Matieres pour select */
         $matieres = Matiere::all();
-        return view('professeurs.create', compact('matieres'));
+        /* Clesses pour checkList */
+        $classes = Classe::all();
+        return view('professeurs.create', compact('matieres', 'classes'));
     }
 
     public function store(Request $request)
@@ -60,20 +63,29 @@ class ProfesseurController extends Controller
         );
         $professeur->password = $hashedpassword;
         $professeur->save();
+        $professeur->classes()->attach($request->classes);
         return redirect('/professeurs')->with('success', 'Professeur created successfully!');
     }
 
     public function show($id)
     {
-        $professeur = Professeur::with('matiere')->find($id);;
-        return view('professeurs.show', compact('professeur'));
+        $professeur = Professeur::with('matiere', 'classes')->find($id);
+        if ($professeur) {
+            return view('professeurs.show', compact('professeur'));
+        }
+        abort(404);
     }
 
     public function edit($id)
     {
-        $professeur = Professeur::find($id);
-        $matieres = Matiere::all();
-        return view('professeurs.edit')->with(compact('professeur', 'matieres'));
+        $professeur = Professeur::with('classes')->find($id);
+        if ($professeur) {
+            $matieres = Matiere::all();
+            /* Clesses pour checkList */
+            $classes = Classe::all();
+            return view('professeurs.edit')->with(compact('professeur', 'matieres', 'classes'));
+        }
+        abort(404);
     }
 
     public function update($id, Request $request)
@@ -93,7 +105,6 @@ class ProfesseurController extends Controller
         if ($request->password) {
             $hashedpassword = Hash::make($request->password);
         }
-
         $user->fill($request->all());
         $user->password = $hashedpassword;
         $user->save();
@@ -101,6 +112,7 @@ class ProfesseurController extends Controller
         $professeur->fill($request->all());
         $professeur->password = $hashedpassword;
         $professeur->save();
+        $professeur->classes()->sync($request->classes);
         return redirect('/professeurs')->with('success', 'Professeur updated successfully!');
     }
 

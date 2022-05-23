@@ -51,6 +51,10 @@ class EmploiProfController extends Controller
     public function show($id)
     {
         $emploi = EmploiProf::with('professeur')->find($id);
+        if ($emploi) {
+            return view('emplois_prof.show', compact('emploi'));
+        }
+        abort(404);
         return view('emplois_prof.show', compact('emploi'));
     }
 
@@ -62,8 +66,11 @@ class EmploiProfController extends Controller
     public function edit($id)
     {
         $emploi = EmploiProf::find($id);
-        $professeurs = Professeur::all();
-        return view('emplois_prof.edit', compact('professeurs', 'emploi'));
+        if ($emploi) {
+            $professeurs = Professeur::all();
+            return view('emplois_prof.edit', compact('professeurs', 'emploi'));
+        }
+        abort(404);
     }
 
     public function update($id, Request $request)

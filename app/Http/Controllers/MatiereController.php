@@ -12,7 +12,7 @@ class MatiereController extends Controller
      *
      * @return void
      */
-   /* public function __construct()
+    /* public function __construct()
     {
         $this->middleware('auth');
     }*/
@@ -43,35 +43,41 @@ class MatiereController extends Controller
         $matiere = new Matiere();
         $matiere->fill($request->all())->save();
 
-        return redirect('/matieres')->with('success','Matiere created successfully!');
+        return redirect('/matieres')->with('success', 'Matiere created successfully!');
     }
 
-    public function show( $id)
+    public function show($id)
     {
-        $matiere =Matiere::find($id);
-        return view('matieres.show', compact('matiere'));
+        $matiere = Matiere::find($id);
+        if ($matiere) {
+            return view('matieres.show', compact('matiere'));
+        }
+        abort(404);
     }
 
-    public function edit( $id)
+    public function edit($id)
     {
-        $matiere =Matiere::find($id);
-        return view('matieres.edit', compact('matiere'));
+        $matiere = Matiere::find($id);
+        if ($matiere) {
+            return view('matieres.edit', compact('matiere'));
+        }
+        abort(404);
     }
 
-    public function update( $id, Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
             'nom' => 'required',
             'coefficient' => 'required',
         ]);
-        $matiere =Matiere::find($id);
+        $matiere = Matiere::find($id);
         $matiere->fill($request->all())->save();
-        return redirect('/matieres')->with('success','Matiere updated successfully!');
+        return redirect('/matieres')->with('success', 'Matiere updated successfully!');
     }
 
-    public function destroy( $id)
+    public function destroy($id)
     {
         Matiere::destroy($id);
-        return redirect('/matieres')->with('success','Matiere deleted successfully!');
+        return redirect('/matieres')->with('success', 'Matiere deleted successfully!');
     }
 }
