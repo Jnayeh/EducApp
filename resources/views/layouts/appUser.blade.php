@@ -82,8 +82,8 @@
                         <a href=" /contact"
                             class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Contactez-Nous</a>
                     @else
-                        <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">A Propos
-                            Nous</a>
+                        <a href="/about"
+                            class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">Reclamations</a>
                     @endguest
                 </div>
                 <!-- Right Side Of Navbar -->
@@ -103,7 +103,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                                 document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
