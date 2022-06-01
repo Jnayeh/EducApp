@@ -26,13 +26,6 @@
                         </div>
                         <h4 class="font-h4"><strong>Détails:</strong> </h4>
                         <h5 class="font-monospace mx-5"> {{ $reclamation->details }}</h5>
-
-
-
-                    </div>
-                    <div class="d-flex justify-content-end">
-
-                        <a href=" {{ route('reclamations') }}" class="btn btn-outline-dark m-2">Retour</a>
                     </div>
                 </div>
             </div>

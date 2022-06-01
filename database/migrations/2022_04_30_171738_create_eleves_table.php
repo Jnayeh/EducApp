@@ -17,11 +17,8 @@ class CreateElevesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('telephone')->nullable();
-            $table->string('role')->default('eleve');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('email')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
 
             $table->UnsignedBigInteger('parent_id')->nullable();

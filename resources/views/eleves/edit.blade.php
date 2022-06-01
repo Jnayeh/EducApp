@@ -21,7 +21,7 @@
 
 
                             <div class="form-group m-2">
-                                <label for="">Nom </label>
+                                <label for="">Nom et Prénom </label>
                                 <input type="text" name="name" value="{{ $eleve->name }}" class="form-control">
                                 @if ($errors->has('name'))
                                     <span class="text-danger m-2">{{ $errors->first('name') }}</span>

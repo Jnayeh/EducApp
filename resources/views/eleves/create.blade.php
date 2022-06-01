@@ -17,7 +17,7 @@
                         <form action="/eleves" method="post">
                             @csrf
                             <div class="form-group m-2">
-                                <label for="">Nom </label>
+                                <label for="">Nom et Prénom</label>
                                 <input type="text" name="name" class="form-control">
                                 @if ($errors->has('name'))
                                     <span class="text-danger m-2">{{ $errors->first('name') }}</span>
@@ -42,8 +42,6 @@
                                 @endif
 
                             </div>
-
-                            <input type="hidden" name="role" value="eleve">
 
                             <div class="d-flex m-2 mt-3">
                                 <label for="password-confirm"

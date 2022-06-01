@@ -17,6 +17,7 @@ class Reclamation extends Model
     protected $fillable = [
         'titre',
         'details',
+        'to',
         'professeur_id',
         'eleve_id',
     ];

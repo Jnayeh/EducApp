@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-    <div class="m-3">
+    <div class="mt-5 container-lg">
         <div class="row justify-content-center">
             <div class="col-12">
                 <a href="eleves/create" class="btn btn-primary mb-2">Aouter eleve</a>
@@ -24,22 +24,23 @@
                             <tr>
                                 <td>{{ $eleve->id }}</td>
                                 <td>{{ $eleve->name }}</td>
-                                <td>{{ $eleve->email }}</td>
-                                <td>{{ $eleve->telephone }}</td>
+                                <td>{{ $eleve->email ?? "N'a pas d'email" }}</td>
+                                <td>{{ $eleve->telephone ?? "N'a pas du telephone" }}</td>
                                 <td>
-                                    @if($eleve->parent)
+                                    @if ($eleve->parent)
                                         {{ $eleve->parent->name }}
                                     @else
                                         <i>Affecter un parent</i>
                                     @endif
-                                    </td>
+                                </td>
                                 <td>
-                                    @if($eleve->classe )
-                                        {{ $eleve->classe->nom  }}
+                                    @if ($eleve->classe)
+                                        {{ $eleve->classe->nom }}
                                     @else
                                         <i>Affecter au classe</i>
                                     @endif
-                                </td></td>
+                                </td>
+                                </td>
                                 <td>{{ date('Y-m-d', strtotime($eleve->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
                                     <a href="eleves/{{ $eleve->id }}" class="btn btn-outline-secondary">Afficher</a>

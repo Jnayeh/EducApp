@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-    <div class="container">
+    <div class="mt-5 container-lg">
         <div class="row justify-content-center">
             <div class="col-12">
                 <a href="classes/create" class="btn btn-primary mb-2">Aouter classe</a>
@@ -24,7 +24,7 @@
                                 <td>{{ $classe->nom }}</td>
                                 <td>{{ $classe->niveau }}</td>
                                 <td>
-                                    @if($classe->emploi_elv)
+                                    @if ($classe->emploi_elv)
                                         <img src="{{ url($classe->emploi_elv) }}" height="50px">
                                     @else
                                         <i>Ajouter un emploi</i>

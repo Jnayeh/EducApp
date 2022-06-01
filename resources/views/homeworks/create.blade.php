@@ -37,13 +37,13 @@
                                 <img src="" id="img" height="100px">
                             </div>
 
-                            <div class="form-group m-2">
+                            {{-- <div class="form-group m-2">
                                 <label for="">Description </label>
                                 <input type="text" name="description" class="form-control">
                                 @if ($errors->has('description'))
                                     <span class="text-danger m-2">{{ $errors->first('description') }}</span>
                                 @endif
-                            </div>
+                            </div> --}}
 
                             <div class="input-group m-2">
                                 <div class="input-group-prepend">

@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-    <div class="container">
+    <div class="mt-5 container-lg">
         <div class="row justify-content-center">
             <div class="col-12">
                 <a href="{{ route('reclamations') }}/create" class="btn btn-primary mb-2">Aouter Reclamation</a>

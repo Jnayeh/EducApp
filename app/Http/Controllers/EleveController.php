@@ -39,25 +39,15 @@ class EleveController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'telephone' => ['nullable', 'integer', 'regex:/[0-9]{8}/'],
         ]);
-        $eleve = new Eleve();
-        $eleve->fill($request->all());
+        $errr = new Eleve();
         $hashedpassword = Hash::make($request->password);
-
-        $user = User::create(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $hashedpassword,
-                'telephone' => $request->telephone,
-                'role' => $request->role
-            ]
-        );
-        $eleve->password = $hashedpassword;
-        $eleve->save();
+        $errr->fill($request->all());
+        $errr->password = $hashedpassword;
+        $errr->save();
         return redirect('/eleves')->with('success', 'Eleve created successfully!');
     }
 
@@ -85,11 +75,10 @@ class EleveController extends Controller
     public function update($id, Request $request)
     {
         $eleve = Eleve::find($id);
-        $user = User::where('email', $eleve->email)->first();
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'email' => 'nullable|string|email|max:255',
             'password' => 'nullable|string|min:8|confirmed',
             'telephone' => 'nullable|integer|regex:/^(\d{8}?)$/',
         ]);
@@ -99,10 +88,6 @@ class EleveController extends Controller
         if ($request->password) {
             $hashedpassword = Hash::make($request->password);
         }
-
-        $user->fill($request->all());
-        $user->password = $hashedpassword;
-        $user->save();
 
         $eleve->fill($request->all());
         $eleve->password = $hashedpassword;

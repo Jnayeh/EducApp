@@ -29,6 +29,12 @@ class ProfesseurController extends Controller
         return view('professeurs.index', compact('professeurs'));
     }
 
+    public function get(Request $request)
+    {
+        return DB::select('select distinct professeurs.id, professeurs.name, professeurs.matiere_id, professeurs.email, professeurs.role, professeurs.telephone from professeurs, classe_professeur,eleves 
+        where professeurs.id=classe_professeur.professeur_id and classe_professeur.classe_id=eleves.classe_id and eleves.id=' . $request->eleve_id);
+    }
+
     public function create()
     {
         /* Matieres pour select */
@@ -112,11 +118,12 @@ class ProfesseurController extends Controller
         $professeur->fill($request->all());
         $professeur->password = $hashedpassword;
         $professeur->save();
+
         $professeur->classes()->sync($request->classes);
         return redirect('/professeurs')->with('success', 'Professeur updated successfully!');
     }
 
-    public function destroy($id)
+    public function remove($id)
     {
         Professeur::destroy($id);
         return redirect('/professeurs')->with('success', 'Professeur deleted successfully!');

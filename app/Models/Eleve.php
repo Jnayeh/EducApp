@@ -18,17 +18,15 @@ class Eleve extends Model
 
         'name',
         'telephone',
-        'role',
         'email',
         'password',
         'classe_id',
-        'emploi_id',
         'parent_id',
     ];
 
     protected $guarded = ['id'];
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
     public function getAuthPassword()
     {

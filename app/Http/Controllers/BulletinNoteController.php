@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BulletinNote;
 use App\Models\Eleve;
+use App\Models\Parents;
 use Illuminate\Http\Request;
 
 class BulletinNoteController extends Controller
@@ -24,6 +25,12 @@ class BulletinNoteController extends Controller
         return view('bulletins.index', compact('bulletins'));
     }
 
+    public function index_parent()
+    {
+        $parent = Parents::where('email', auth()->user()->email)->first();
+        $bulletins = BulletinNote::with('eleve', 'eleve.parent')->get();
+        return view('parent_views.bulletins.index', compact('bulletins', 'parent'));
+    }
 
     public function create()
     {
@@ -57,10 +64,6 @@ class BulletinNoteController extends Controller
         abort(404);
     }
 
-    public function showByEleve($id)
-    {
-        return BulletinNote::with('eleve')->where('eleve_id', $id)->first();
-    }
 
     public function edit($id)
     {

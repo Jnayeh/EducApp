@@ -17,22 +17,22 @@
                         <h2 class="font-h2"><strong>Nom:</strong> </h2>
                         <h3 class="font-monospace text-center "> {{ $eleve->name }}</h3>
 
-                        <p><strong>Email:</strong> {{ $eleve->email }}</p>
-                        <p><strong>Telephone:</strong> {{ $eleve->telephone }}</p>
+                        <p><strong>Email:</strong> {{ $eleve->email ?? "N'a pas d'email" }}</p>
+                        <p><strong>Telephone:</strong> {{ $eleve->telephone ?? "N'a pas du numero telephone" }}</p>
                         <p><strong>Classe:</strong>
-                            @if($eleve->classe )
-                                {{ $eleve->classe->nom  }}
+                            @if ($eleve->classe)
+                                {{ $eleve->classe->nom }}
                             @else
                                 <i>Affecter au classe</i>
                             @endif
                         </p>
-                            <p><strong>Parent:</strong>
-                                @if($eleve->parent)
-                                    {{ $eleve->parent->name }}
-                                @else
-                                    <i>Affecter un parent</i>
-                                @endif
-                            </p>
+                        <p><strong>Parent:</strong>
+                            @if ($eleve->parent)
+                                {{ $eleve->parent->name }}
+                            @else
+                                <i>Affecter un parent</i>
+                            @endif
+                        </p>
 
                     </div>
                     <div class="d-flex justify-content-end">

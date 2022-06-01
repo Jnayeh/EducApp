@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-    <div class="m-5">
+    <div class="mt-5 container-lg">
         <div class="row justify-content-center">
             <div class="col-12">
                 <a href="parents/create" class="btn btn-primary mb-2">Aouter parent</a>

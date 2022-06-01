@@ -1,7 +1,7 @@
 @extends('layouts.appAdmin')
 
 @section('content')
-    <div class="m-5">
+    <div class="mt-5 container-lg">
         <div class="row justify-content-center">
             <div class="col-12">
                 <a href="professeurs/create" class="btn btn-primary mb-2">Aouter professeur</a>
@@ -28,9 +28,12 @@
                                 <td>{{ $professeur->matiere->nom }}</td>
                                 <td>{{ date('Y-m-d', strtotime($professeur->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
+
                                     <a href="professeurs/{{ $professeur->id }}"
                                         class="btn btn-outline-secondary">Afficher</a>
+
                                     <a href="professeurs/{{ $professeur->id }}/edit" class="btn btn-primary">Modifier</a>
+
                                     <form action="professeurs/{{ $professeur->id }}" method="post" class="d-inline">
                                         {{ csrf_field() }}
                                         @method('DELETE')
