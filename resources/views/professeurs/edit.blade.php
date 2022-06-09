@@ -20,27 +20,37 @@
 
 
 
-                            <div class="form-group m-2">
-                                <label for="">Nom </label>
-                                <input type="text" name="name" value="{{ $professeur->name }}" class="form-control">
-                                @if ($errors->has('name'))
-                                    <span class="text-danger m-2">{{ $errors->first('name') }}</span>
-                                @endif
+                            <div class="row mt-2">
+                                <div class="form-group col-md-6">
+                                    <label for="">Nom </label>
+                                    <input type="text" name="name" class="form-control" value="{{ $professeur->name }}">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger mt-2">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Prénom </label>
+                                    <input type="text" name="firstname" class="form-control"
+                                        value="{{ $professeur->firstname }}">
+                                    @if ($errors->has('firstname'))
+                                        <span class="text-danger mt-2">{{ $errors->first('firstname') }}</span>
+                                    @endif
+                                </div>
                             </div>
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Email</label>
                                 <input type="email" value="{{ $professeur->email }}" name="email" class="form-control">
                                 @if ($errors->has('email'))
-                                    <span class="text-danger m-2">{{ $errors->first('email') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('email') }}</span>
                                 @endif
                             </div>
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Password</label>
                                 <input type="password" name="password" class="form-control">
                                 @if ($errors->has('password'))
-                                    <span class="text-danger m-2">{{ $errors->first('password') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('password') }}</span>
                                 @endif
 
                             </div>
@@ -55,16 +65,16 @@
                                 </div>
                             </div>
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Telephone</label>
                                 <input type="number" value="{{ $professeur->telephone }}" min=0 name="telephone"
                                     class="form-control">
                                 @if ($errors->has('telephone'))
-                                    <span class="text-danger m-2">{{ $errors->first('telephone') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('telephone') }}</span>
                                 @endif
                             </div>
 
-                            <div class="input-group m-2">
+                            <div class="input-group mt-2">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="">Matiere</label>
                                 </div>
@@ -78,14 +88,12 @@
                                 </select>
                             </div>
                             @if ($errors->has('matiere_id'))
-                                <span class="text-danger m-2">{{ $errors->first('matiere_id') }}</span>
+                                <span class="text-danger mt-2">{{ $errors->first('matiere_id') }}</span>
                             @endif
                             <div class=" m-2 mt-4">
                                 <div>
-                                    <label for="">Classes</label>
+                                    <label for="">Classes:</label>
                                 </div>
-
-
 
                                 @foreach ($classes as $classe)
                                     <div class="form-check">

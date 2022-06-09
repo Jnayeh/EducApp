@@ -21,7 +21,7 @@
                         @foreach ($parents as $parent)
                             <tr>
                                 <td>{{ $parent->id }}</td>
-                                <td>{{ $parent->name }}</td>
+                                <td>{{ $parent->name . ' ' . $parent->firstname }}</td>
                                 <td>{{ $parent->email }}</td>
                                 <td>{{ $parent->telephone }}</td>
                                 <td>{{ date('Y-m-d', strtotime($parent->created_at)) }}</td>

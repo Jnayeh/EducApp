@@ -18,8 +18,9 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="">Photo </label>
-                                <input type="file" name="photo" value="{{ $reponse->photo }}" class="form-control"
+                                <label for="">Document </label>
+                                <input type="file" name="photo" value="{{ $reponse->photo }}"
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx" class="form-control"
                                     onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 @error('photo')
                                     <div class="text-danger m-2">{{ $message }}</div>
@@ -37,7 +38,7 @@
                                     @foreach ($eleves as $eleve)
                                         <option value="{{ $eleve->id }}"
                                             {{ $eleve->id == $reponse->eleve_id ? 'selected' : '' }}>
-                                            {{ $eleve->name }}</option>
+                                            {{ $eleve->name . ' ' . $eleve->firstname }}</option>
                                     @endforeach
 
                                 </select>
@@ -51,10 +52,10 @@
                                     <label class="input-group-text" for="">Home Work</label>
                                 </div>
                                 <select class="custom-select" name="homee_work_id">
-                                    @foreach ($eleves as $eleve)
-                                        <option value="{{ $eleve->id }}"
-                                            {{ $eleve->id == $reponse->homee_work_id ? 'selected' : '' }}>
-                                            {{ $eleve->name }}</option>
+                                    @foreach ($homeWorks as $homeWork)
+                                        <option value="{{ $homeWork->id }}"
+                                            {{ $homeWork->id == $reponse->home_work_id ? 'selected' : '' }}>
+                                            {{ $homeWork->id }}</option>
                                     @endforeach
 
                                 </select>

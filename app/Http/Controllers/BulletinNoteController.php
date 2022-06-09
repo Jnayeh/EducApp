@@ -41,7 +41,7 @@ class BulletinNoteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'bulletin' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'bulletin' => 'required|mimes:jpeg,png,jpg,gif,pdf,doc,docx|max:20480',
             'eleve_id' => 'required|unique:bulletin_notes',
 
         ]);
@@ -67,6 +67,7 @@ class BulletinNoteController extends Controller
 
     public function edit($id)
     {
+        $eleves = Eleve::all();
         $bulletin = BulletinNote::find($id);
         if ($bulletin) {
             return view('bulletins.edit', compact('eleves', 'bulletin'));
@@ -78,7 +79,7 @@ class BulletinNoteController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'bulletin' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'bulletin' => 'nullable|mimes:jpeg,png,jpg,gif,pdf,doc,docx|max:20480',
             'eleve_id' => 'required|unique:bulletin_notes,' . $id,
 
         ]);

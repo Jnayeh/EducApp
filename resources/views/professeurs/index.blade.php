@@ -22,7 +22,7 @@
                         @foreach ($professeurs as $professeur)
                             <tr>
                                 <td>{{ $professeur->id }}</td>
-                                <td>{{ $professeur->name }}</td>
+                                <td>{{ $professeur->name . ' ' . $professeur->firstname }}</td>
                                 <td>{{ $professeur->email }}</td>
                                 <td>{{ $professeur->telephone }}</td>
                                 <td>{{ $professeur->matiere->nom }}</td>

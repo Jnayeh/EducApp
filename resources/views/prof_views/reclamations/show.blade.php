@@ -15,8 +15,10 @@
                             </div>
                         @endif
                         <h2 class="font-h2 text-center"><strong>{{ $reclamation->titre }}</strong> </h2>
-                        <h4 class="font-monospace ">De parent: {{ $reclamation->eleve->parent->name }}</h4>
-                        <h4 class="font-monospace ">A propos: {{ $reclamation->eleve->name }} <br>
+                        <h4 class="font-monospace ">De parent:
+                            {{ $reclamation->eleve->parent->name . ' ' . $reclamation->eleve->parent->firstname }}</h4>
+                        <h4 class="font-monospace ">A propos:
+                            {{ $reclamation->eleve->name . ' ' . $reclamation->eleve->firstname }} <br>
                             Affecté(e) au classe: {{ $reclamation->eleve->classe->nom }} </h4>
                         <p class="font-monospace m-3"> {{ $reclamation->details ?? '' }}</p>
 

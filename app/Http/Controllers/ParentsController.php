@@ -33,7 +33,8 @@ class ParentsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'telephone' => ['required', 'integer', 'regex:/^(\d{8}?)$/'],
@@ -46,6 +47,7 @@ class ParentsController extends Controller
         $user = User::create(
             [
                 'name' => $request->name,
+                'firstname' => $request->firstname,
                 'email' => $request->email,
                 'password' => $hashedpassword,
                 'telephone' => $request->telephone,
@@ -82,6 +84,7 @@ class ParentsController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'telephone' => 'required|integer|regex:/^(\d{8}?)$/',

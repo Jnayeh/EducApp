@@ -42,7 +42,7 @@
                         @endif
                     @else
                         <li class="nav-item">
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->name . ' ' . Auth::user()->firstname }}
                         </li>
                     @endguest
                 </ul>
@@ -69,12 +69,12 @@
                     </a>
                     <a href="{{ route('classes') }}"
                         class="nav_link {{ str_contains(Route::currentRouteName(), 'classes') ? 'active' : '' }}">
-                        <i class='bx bxs-graduation nav_icon'></i>
+                        <i class='bx bx-pencil nav_icon'></i>
                         <span class="nav_name">Classes</span>
                     </a>
                     <a href=" {{ route('professeurs') }}"
                         class="nav_link {{ str_contains(Route::currentRouteName(), 'professeurs') ? 'active' : '' }}">
-                        <i class='bx bx-user nav_icon'></i>
+                        <i class='bx bxs-graduation nav_icon'></i>
                         <span class="nav_name">Professeurs</span>
                     </a>
                     <a href="{{ route('emplois_prof') }}"

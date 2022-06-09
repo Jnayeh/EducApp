@@ -18,8 +18,9 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for="">Photo </label>
+                                <label for="">Document </label>
                                 <input type="file" name="photo" value="{{ $emploi->photo }}" class="form-control"
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx"
                                     onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             <div class="m-2 d-flex justify-content-center">
@@ -34,7 +35,7 @@
                                     @foreach ($professeurs as $professeur)
                                         <option value="{{ $professeur->id }}"
                                             {{ $professeur->id == $emploi->professeur_id ? 'selected' : '' }}>
-                                            {{ $professeur->name }}</option>
+                                            {{ $professeur->name . ' ' . $professeur->firstname }}</option>
                                     @endforeach
 
                                 </select>

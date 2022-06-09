@@ -24,8 +24,8 @@
                                 <td>{{ $reclamation->id }}</td>
                                 <td>{{ $reclamation->titre }}</td>
                                 <td>{{ substr($reclamation->details, '0', '50') . '...' }}</td>
-                                <td>{{ $reclamation->eleve->name }}</td>
-                                <td>{{ $reclamation->professeur->name }}</td>
+                                <td>{{ $reclamation->eleve->name . ' ' . $reclamation->eleve->firstname }}</td>
+                                <td>{{ $reclamation->professeur->name . ' ' . $reclamation->professeur->firstname }}</td>
                                 <td>{{ date('Y-m-d', strtotime($reclamation->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
                                     <a href="{{ route('reclamations') }}/{{ $reclamation->id }}"

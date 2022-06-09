@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for="">Emploi d'eleves </label>
                                 <input type="file" name="emploi_elv" value="{{ $classe->emploi_elv }}"
-                                    class="form-control"
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx" class="form-control"
                                     onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                             </div>
                             <div class="m-2 d-flex justify-content-center">

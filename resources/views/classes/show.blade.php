@@ -20,17 +20,16 @@
 
                         @if ($classe->emploi_elv)
                             <div class="m-2 d-flex justify-content-center">
-                                <img src="{{ url($classe->emploi_elv) }}" width="300px">
+                                <a href="{{ url($classe->emploi_elv) }}" target="_blank"><i
+                                        class='bx bx-link-external'></i></a>
                             </div>
-
-                            @else
-
-                                <div class="m-2 d-flex justify-content-center">
-                                    <img src="{{ url('placeholder.png') }}" width="300px">
-                                </div>
-                                <div class="text-center">
-                                    <i>Ajouter un emploi</i>
-                                </div>
+                        @else
+                            <div class="m-2 d-flex justify-content-center">
+                                <img src="{{ url('placeholder.png') }}" width="300px">
+                            </div>
+                            <div class="text-center">
+                                <i>Ajouter un emploi</i>
+                            </div>
                         @endif
 
 

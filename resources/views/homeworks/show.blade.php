@@ -14,11 +14,20 @@
                             </div>
                         @endif
                         <h2 class="font-h2"><strong>Nom du professeur:</strong> </h2>
-                        <h3 class="font-monospace text-center "> {{ $home_work->professeur->name }}</h3>
-                        <p class="font-monospace text-center "> {{ $home_work->description ?? '' }}</p>
+                        <h3 class="font-monospace text-center ">
+                            {{ $home_work->professeur->name . ' ' . $home_work->professeur->firstname }}</h3>
+                        <div class="card-body">
 
+                            Pour les classes: <p class="card-text d-flex justify-content-space-around">
+                                @foreach ($home_work->classes as $classe)
+                                    <span class="chip m-1">
+                                        {{ $classe->nom }}
+                                    </span>
+                                @endforeach
+                            </p>
+                        </div>
                         <div class="m-2 d-flex justify-content-center">
-                            <img src="{{ url($home_work->photo) }}" width="300px">
+                            <a href="{{ url($home_work->photo) }}" target="_blank"><i class='bx bx-link-external'></i></a>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">

@@ -31,7 +31,7 @@ class ProfesseurController extends Controller
 
     public function get(Request $request)
     {
-        return DB::select('select distinct professeurs.id, professeurs.name, professeurs.matiere_id, professeurs.email, professeurs.role, professeurs.telephone from professeurs, classe_professeur,eleves 
+        return DB::select('select distinct professeurs.id, professeurs.name, professeurs.firstname, professeurs.matiere_id, professeurs.email, professeurs.role, professeurs.telephone from professeurs, classe_professeur,eleves 
         where professeurs.id=classe_professeur.professeur_id and classe_professeur.classe_id=eleves.classe_id and eleves.id=' . $request->eleve_id);
     }
 
@@ -47,7 +47,8 @@ class ProfesseurController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'telephone' => ['required', 'integer', 'regex:/^(\d{8}?)$/'],
@@ -61,6 +62,7 @@ class ProfesseurController extends Controller
         $user = User::create(
             [
                 'name' => $request->name,
+                'firstname' => $request->firstname,
                 'email' => $request->email,
                 'password' => $hashedpassword,
                 'telephone' => $request->telephone,
@@ -100,6 +102,7 @@ class ProfesseurController extends Controller
         $user = User::where('email', $professeur->email)->first();
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'telephone' => 'required|integer|regex:/^(\d{8}?)$/',

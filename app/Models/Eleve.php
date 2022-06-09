@@ -17,17 +17,18 @@ class Eleve extends Model
     protected $fillable = [
 
         'name',
+        'firstname',
         'telephone',
         'email',
-        'password',
+        /* 'password', */
         'classe_id',
         'parent_id',
     ];
 
     protected $guarded = ['id'];
-    protected $hidden = [
+    /* protected $hidden = [
         'password',
-    ];
+    ]; */
     public function getAuthPassword()
     {
         return $this->password;

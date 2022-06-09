@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Ajout professeur') }}</div>
+                    <div class="card-header">{{ __('Ajout parent') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -16,29 +16,39 @@
 
                         <form action="/parents" method="post">
                             @csrf
-                            <div class="form-group m-2">
-                                <label for="">Nom </label>
-                                <input type="text" name="name" class="form-control">
-                                @if ($errors->has('name'))
-                                    <span class="text-danger m-2">{{ $errors->first('name') }}</span>
-                                @endif
+                            <div class="row mt-2">
+                                <div class="form-group col-md-6">
+                                    <label for="">Nom </label>
+                                    <input type="text" value="{{ old('name') }}" name="name" class="form-control">
+                                    @if ($errors->has('name'))
+                                        <span class="text-danger mt-2">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Prénom </label>
+                                    <input type="text" value="{{ old('firstname') }}" name="firstname"
+                                        class="form-control">
+                                    @if ($errors->has('firstname'))
+                                        <span class="text-danger mt-2">{{ $errors->first('firstname') }}</span>
+                                    @endif
+                                </div>
                             </div>
 
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Email</label>
-                                <input type="email" name="email" class="form-control">
+                                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
                                 @if ($errors->has('email'))
-                                    <span class="text-danger m-2">{{ $errors->first('email') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('email') }}</span>
                                 @endif
 
                             </div>
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Password</label>
                                 <input type="password" name="password" class="form-control">
                                 @if ($errors->has('password'))
-                                    <span class="text-danger m-2">{{ $errors->first('password') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('password') }}</span>
                                 @endif
 
                             </div>
@@ -53,11 +63,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group m-2">
+                            <div class="form-group mt-2">
                                 <label for="">Telephone</label>
-                                <input type="number" min=0 name="telephone" class="form-control">
+                                <input type="number" min=0 value="{{ old('telephone') }}" name="telephone"
+                                    class="form-control">
                                 @if ($errors->has('telephone'))
-                                    <span class="text-danger m-2">{{ $errors->first('telephone') }}</span>
+                                    <span class="text-danger mt-2">{{ $errors->first('telephone') }}</span>
                                 @endif
 
                             </div>

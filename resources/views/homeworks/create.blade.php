@@ -54,10 +54,22 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($professeurs as $professeur)
                                         <option value="{{ $professeur->id }}">
-                                            {{ $professeur->name }}</option>
+                                            {{ $professeur->name . ' ' . $professeur->firstname }}</option>
                                     @endforeach
 
                                 </select>
+                            </div>
+                            <div class="form-group m-2">
+                                <label for="">Pour les classes: </label>
+                                @foreach ($classes as $classe)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="classes[]"
+                                            value="{{ $classe->id }}" id="{{ $classe->id }}">
+                                        <label class="form-check-label" for="{{ $classe->id }}">
+                                            {{ $classe->nom . ' niveau: ' . $classe->niveau }}
+                                        </label>
+                                    </div>
+                                @endforeach
                             </div>
                             @if ($errors->has('professeur_id'))
                                 <span class="text-danger m-2">{{ $errors->first('professeur_id') }}</span>

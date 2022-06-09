@@ -20,7 +20,7 @@
 
                             <div class="form-group m-2">
                                 <label for="">Titre </label>
-                                <input type="text" name="titre" class="form-control">
+                                <input type="text" value="{{ old('titre') }}" name="titre" class="form-control">
                                 @if ($errors->has('titre'))
                                     <span class="text-danger m-2">{{ $errors->first('titre') }}</span>
                                 @endif
@@ -28,7 +28,8 @@
 
                             <div class="form-group m-2">
                                 <label for="">Details </label>
-                                <textarea name="details" class="form-control" rows="4" placeholder="Les details sur la eclamations svp!!"></textarea>
+                                <textarea value="{{ old('details') }}" name="details" class="form-control" rows="4"
+                                    placeholder="Les details sur la eclamations svp!!"></textarea>
                                 @if ($errors->has('details'))
                                     <span class="text-danger m-2">{{ $errors->first('details') }}</span>
                                 @endif
@@ -43,7 +44,7 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($eleves as $eleve)
                                         <option value="{{ $eleve->id }}">
-                                            {{ $eleve->name }}</option>
+                                            {{ $eleve->name . ' ' . $eleve->firstname }}</option>
                                     @endforeach
 
                                 </select>
@@ -61,7 +62,7 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($professeurs as $professeur)
                                         <option value="{{ $professeur->id }}">
-                                            {{ $professeur->name }}</option>
+                                            {{ $professeur->name . ' ' . $professeur->firstname }}</option>
                                     @endforeach
 
                                 </select>

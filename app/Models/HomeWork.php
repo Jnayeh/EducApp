@@ -23,6 +23,12 @@ class HomeWork extends Model
     {
         return $this->belongsTo(Professeur::class);
     }
+
+    public function classes()
+    {
+        return $this->belongsToMany(Classe::class);
+    }
+
     public function reponses()
     {
         return $this->hasMany(Reponse::class);

@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Image</th>
+                            <th>Document</th>
                             <th>Eleve</th>
                             <th>Home Work</th>
                             <th>Created at</th>
@@ -22,10 +22,14 @@
                             <tr>
                                 <td>{{ $reponse->id }}</td>
                                 <td>
-                                    <img src="{{ url($reponse->photo) }}" height="50px">
+                                    @if (Str::endsWith($reponse->photo, 'pdf') | Str::endsWith($reponse->photo, 'doc') | Str::endsWith($reponse->photo, 'docx'))
+                                        <img src="{{ url('doc.jpg') }}" alt="document" height="30px">
+                                    @else
+                                        <img src="{{ url($reponse->photo) }}" height="30px" alt="photo">
+                                    @endif
                                 </td>
-                                <td>{{ $reponse->eleve->name }}</td>
-                                <td>{{ $reponse->homeWork->name }}</td>
+                                <td>{{ $reponse->eleve->name . ' ' . $reponse->eleve->firstname }}</td>
+                                <td>{{ $reponse->homeWork->id }}</td>
                                 <td>{{ date('Y-m-d', strtotime($reponse->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
                                     <a href="{{ route('reponses') }}/{{ $reponse->id }}"

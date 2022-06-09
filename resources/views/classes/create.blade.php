@@ -25,7 +25,7 @@
                             @csrf
                             <div class="form-group m-2">
                                 <label for="">Nom </label>
-                                <input type="text" name="nom" class="form-control">
+                                <input type="text" value="{{ old('nom') }}" name="nom" class="form-control">
                                 @if ($errors->has('nom'))
                                     <span class="text-danger m-2">{{ $errors->first('nom') }}</span>
                                 @endif
@@ -33,7 +33,8 @@
 
                             <div class="form-group m-2">
                                 <label for="">Niveau</label>
-                                <input type="number" min=1 name="niveau" class="form-control">
+                                <input type="number" min=1 value="{{ old('niveau') }}" name="niveau"
+                                    class="form-control">
                                 @if ($errors->has('niveau'))
                                     <span class="text-danger m-2">{{ $errors->first('niveau') }}</span>
                                 @endif
@@ -42,7 +43,7 @@
                             <div class="form-group m-2">
                                 <label for="">Emploi d'eleves</label>
                                 <input type="file" min=0 step="0.01" name="emploi_elv" class="form-control"
-                                    onchange="fileChange(event)">
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx" onchange="fileChange(event)">
                                 @error('emploi_elv')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror

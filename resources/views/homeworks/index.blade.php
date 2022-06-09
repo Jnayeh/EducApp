@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Image</th>
+                            <th>Document</th>
                             <th>Professeur</th>
                             <th>Created at</th>
                             <th class="text-center">Action</th>
@@ -21,9 +21,13 @@
                             <tr>
                                 <td>{{ $home_work->id }}</td>
                                 <td>
-                                    <img src="{{ url($home_work->photo) }}" height="50px">
+                                    @if (Str::endsWith($home_work->photo, 'pdf') | Str::endsWith($home_work->photo, 'doc') | Str::endsWith($home_work->photo, 'docx'))
+                                        <img src="{{ url('doc.jpg') }}" alt="document" height="30px">
+                                    @else
+                                        <img src="{{ url($home_work->photo) }}" height="30px" alt="photo">
+                                    @endif
                                 </td>
-                                <td>{{ $home_work->professeur->name }}</td>
+                                <td>{{ $home_work->professeur->name . ' ' . $home_work->professeur->firstname }}</td>
                                 <td>{{ date('Y-m-d', strtotime($home_work->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
                                     <a href="home_works/{{ $home_work->id }}"

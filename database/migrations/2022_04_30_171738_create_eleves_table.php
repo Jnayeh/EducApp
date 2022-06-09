@@ -16,9 +16,10 @@ class CreateElevesTable extends Migration
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('firstname');
             $table->integer('telephone')->nullable();
             $table->string('email')->nullable();
-            $table->string('password');
+            /* $table->string('password'); */
             $table->timestamps();
 
             $table->UnsignedBigInteger('parent_id')->nullable();

@@ -8,7 +8,8 @@
                 <div class="card ">
                     <div class="card-body">
                         <h5 class="card-title">{{ $reclamation->titre }} </h5>
-                        <h4 class="card-text">Pour l'eleve: {{ $reclamation->eleve->name }}</h4>
+                        <h4 class="card-text">Pour l'eleve:
+                            {{ $reclamation->eleve->name . ' ' . $reclamation->eleve->firstname }}</h4>
                         <p>{{ substr($reclamation->details, '0', '50') . '...' }}</p>
                     </div>
 
@@ -19,11 +20,15 @@
                     </div>
 
                     <div class="card-footer text-center text-muted">Crée le:
-                        {{ date('Y-m-d', strtotime($reclamation->created_at)) }}
+                        {{ date('d-m-Y', strtotime($reclamation->created_at)) }}
                     </div>
                 </div>
             @endforeach
-
+            @if (count($reclamations) == 0)
+                <div class='d-flex flex-column justify-content-center' style='height:300px;margin:0px'>
+                    <h1 style='max-width:70vw; margin: auto; text-align:center'>Vous avez aucune reclamation</h1>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

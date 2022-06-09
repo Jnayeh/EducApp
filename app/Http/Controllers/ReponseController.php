@@ -26,7 +26,7 @@ class ReponseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'required|mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
             'eleve_id' => 'required',
             'home_work_id' => 'required',
 
@@ -75,7 +75,7 @@ class ReponseController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
             'eleve_id' => 'required',
             'home_work_id' => 'required',
 

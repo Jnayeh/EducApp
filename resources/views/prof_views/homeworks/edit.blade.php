@@ -1,7 +1,7 @@
 @extends('layouts.appUser')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -17,13 +17,30 @@
                         <form action="/homeworks_prof/{{ $home_work->id }}" enctype="multipart/form-data" method="post">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
-                                <label for="">Photo </label>
+
+                            <div class="form-group m-2">
+                                <label for="">Pour les classes: </label>
+                                @foreach ($prof->classes as $classe)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="classes[]"
+                                            value="{{ $classe->id }}" id="{{ $classe->id }}"
+                                            {{ $home_work->classes->contains($classe) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ $classe->id }}">
+                                            {{ $classe->nom . ' ' . $classe->niveau }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="form-group m-2">
+                                <label for="">Document </label>
                                 <input type="file" name="photo" value="{{ $home_work->photo }}" class="form-control"
-                                    onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx"
+                                    onchange="document.getElementById('output').href = window.URL.createObjectURL(this.files[0])">
                             </div>
                             <div class="m-2 d-flex justify-content-center">
-                                <img id="output" src="{{ url($home_work->photo) }}" height="100px">
+                                <a id="output" href="{{ url($reponse->photo) }}" target="_blank"><i
+                                        class='bx bx-link-external'></i></a>
                                 @error('photo')
                                     <div class="text-danger m-2">{{ $message }}</div>
                                 @enderror

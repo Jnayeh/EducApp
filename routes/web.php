@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BulletinNoteController;
 use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\DownloadsController;
 use App\Http\Controllers\EmploiProfController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeWorkController;
@@ -92,7 +93,6 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::post('emplois_prof', [EmploiProfController::class, 'store']);
     Route::get('emplois_prof/{id}/edit', [EmploiProfController::class, 'edit']);
     Route::get('emplois_prof/{id}', [EmploiProfController::class, 'show']);
-    Route::get('professeur/{id}/emplois_prof', [EmploiProfController::class, 'showByProf']);
     Route::put('emplois_prof/{id}', [EmploiProfController::class, 'update']);
     Route::delete('emplois_prof/{id}', [EmploiProfController::class, 'destroy']);
 
@@ -144,11 +144,20 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/download/files/{file_name}', [DownloadsController::class, 'download']);
+
+
 Route::group(['middleware' => ['is_prof']], function () {
     Route::get('/prof_home', [HomeController::class, 'index_prof'])->name('prof_home');
+    Route::get('professeur/emplois_prof', [EmploiProfController::class, 'showByProf']);
 
     Route::get('/prof_homeworks', [HomeWorkController::class, 'index_prof'])->name('prof_homeworks');
     Route::get('/prof_homeworks/{id}', [HomeWorkController::class, 'showByIdProf']);
+
+    // Notifications
+    Route::get('/prof_homeworks_notification', [HomeWorkController::class, 'get_prof'])->name('prof_homeworks_notification');
+    Route::get('/prof_reclamations_notification', [ReclamationController::class, 'get_prof'])->name('prof_reclamations_notification');
+
 
     Route::get('homeworks_prof/create', [HomeWorkController::class, 'createByProf']);
     Route::post('homeworks_prof', [HomeWorkController::class, 'store']);
@@ -169,6 +178,12 @@ Route::group(['middleware' => ['is_parent']], function () {
     Route::get('/parent_homeworks', [HomeWorkController::class, 'index_parent'])->name('parent_homeworks');
     Route::get('/parent_homeworks/{id}/eleve/{eleve_id}', [HomeWorkController::class, 'showById']);
 
+    //Notifications
+    Route::get('/parent_homeworks_notification', [HomeWorkController::class, 'get_parent'])->name('parent_homeworks_notification');
+    Route::get('/parent_reclamations_notification', [ReclamationController::class, 'get_parent'])->name('parent_reclamations_notification');
+
+
+    Route::get('/parent_emplois', [EleveController::class, 'index_parent']);
 
     Route::get('professeurs_by_eleve', [ProfesseurController::class, 'get'])->name('professeurs_by_eleve');
     Route::post('reponses_eleve', [ReponseController::class, 'store']);

@@ -30,6 +30,8 @@
     <link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
@@ -44,7 +46,7 @@
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            <div class="hidden fixed top-5 right-0 px-6 py-4 sm:block">
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                 @else
@@ -80,31 +82,109 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav font-weight-bold mx-auto py-0">
                     @guest
-                        <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Accueil</a>
-                        <a href="/about" class="nav-item nav-link {{ Request::is('about') ? 'active' : '' }}">
+                        <a href="/" class="nav-item nav-link  {{ Request::is('/') ? 'active' : '' }}">Accueil</a>
+                        <a href="/about" class="nav-item nav-link  {{ Request::is('about') ? 'active' : '' }}">
                             A Propos Nous</a>
                         <a href=" /contact"
-                            class="nav-item nav-link {{ Request::is('contact') ? 'active' : '' }}">Contactez-Nous</a>
+                            class="nav-item nav-link  {{ Request::is('contact') ? 'active' : '' }}">Contactez-Nous</a>
                     @else
                         @if (Auth::user()->role == 'professeur')
+                            <script>
+                                $(document).ready(function() {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: "{{ route('prof_homeworks_notification') }}",
+
+                                        success: function(data) {
+                                            if (data.length > 0) {
+                                                document.getElementById("prof_homeworks").innerHTML =
+                                                    'Homeworks <span class="position-absolute top-5 start-1 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden">notifications non-lus</span></span>';
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: "{{ route('prof_reclamations_notification') }}",
+
+                                        success: function(data) {
+                                            if (data.length > 0) {
+                                                document.getElementById("prof_reclamations").innerHTML =
+                                                    'Reclamations <span class="position-absolute top-5 start-1 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden">notifications non-lus</span></span>';
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
                             <a href="/prof_home"
-                                class="nav-item nav-link {{ Request::is('prof_home') ? 'active' : '' }}">Accueil</a>
-                            <a href="/prof_homeworks"
-                                class="nav-item nav-link {{ str_contains(Route::currentRouteName(), 'homeworks') ? 'active' : '' }}">Homeworks</a>
-                            <a href="/prof_reclamations"
-                                class="nav-item nav-link {{ str_contains(Route::currentRouteName(), 'reclamations') ? 'active' : '' }}">Reclamations</a>
+                                class="nav-item nav-link  {{ Request::is('prof_home') ? 'active' : '' }}">Accueil</a>
+                            <a href="/prof_homeworks" id="prof_homeworks"
+                                class="nav-item nav-link  position-relative p-2 my-auto px-3 {{ str_contains(Route::currentRouteName(), 'homeworks') ? 'active' : '' }}">Homeworks
+                            </a>
+                            <a href="/prof_reclamations" id="prof_reclamations"
+                                class="nav-item nav-link  position-relative p-2 my-auto px-3 {{ str_contains(Route::currentRouteName(), 'reclamations') ? 'active' : '' }}">Reclamations
+                            </a>
+                            <a href="/professeur/emplois_prof" target="blank" class="nav-item nav-link ">Emploi</a>
                         @elseif (Auth::user()->role == 'parent')
+                            <script>
+                                $(document).ready(function() {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: "{{ route('parent_homeworks_notification') }}",
+
+                                        success: function(data) {
+                                            console.log("Parent homeworks: ", data);
+                                            if (data.length > 0) {
+                                                document.getElementById("parent_homeworks").innerHTML =
+                                                    'Homeworks <span class="position-absolute top-5 start-1 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden">notifications non-lus</span></span>';
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+
+                            <script>
+                                $(document).ready(function() {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: "{{ route('parent_reclamations_notification') }}",
+
+                                        success: function(data) {
+                                            console.log("Parent reclamations: ", data);
+                                            if (data.length > 0) {
+                                                document.getElementById("parent_reclamations").innerHTML =
+                                                    'Reclamations <span class="position-absolute top-5 start-1 translate-middle badge border border-light rounded-circle bg-danger p-1"><span class="visually-hidden">notifications non-lus</span></span>';
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
                             <a href="/parent_home"
-                                class="nav-item nav-link {{ Request::is('parent_home') ? 'active' : '' }}">Accueil</a>
-                            <a href="/parent_homeworks"
-                                class="nav-item nav-link {{ str_contains(Route::currentRouteName(), 'homeworks') ? 'active' : '' }}">Homeworks</a>
-                            <a href="/parent_reclamations"
-                                class="nav-item nav-link {{ str_contains(Route::currentRouteName(), 'reclamations') ? 'active' : '' }}">Reclamations</a>
+                                class="nav-item nav-link  {{ Request::is('parent_home') ? 'active' : '' }}">Accueil</a>
+                            <a href="/parent_homeworks" id="parent_homeworks"
+                                class="nav-item nav-link  position-relative p-2 my-auto px-3 {{ str_contains(Route::currentRouteName(), 'homeworks') ? 'active' : '' }}">Homeworks
+                            </a>
+                            <a href="/parent_reclamations" id="parent_reclamations"
+                                class="nav-item nav-link  position-relative p-2 my-auto px-3 {{ str_contains(Route::currentRouteName(), 'reclamations') ? 'active' : '' }}">Reclamations
+                            </a>
+                            <a href="/parent_emplois"
+                                class="nav-item nav-link  position-relative p-2 my-auto px-3 {{ str_contains(Route::currentRouteName(), 'parent_emplois') ? 'active' : '' }}">
+                                Emplois d'élèves
+                                {{-- <span
+                                    class="position-absolute top-5 start-1 translate-middle badge border border-light rounded-circle bg-danger p-1">
+                                    <span class="visually-hidden">notifications non-lus</span>
+                                </span> --}}
+                            </a>
                             <a href="/parent_bulletins"
-                                class="nav-item nav-link {{ str_contains(Route::currentRouteName(), 'bulletins') ? 'active' : '' }}">Bulletins</a>
+                                class="nav-item nav-link  {{ str_contains(Route::currentRouteName(), 'bulletins') ? 'active' : '' }}">Bulletins</a>
                         @elseif (Auth::user()->role == 'admin')
-                            <a href="/" class="nav-item nav-link {{ Request::is('/') ? 'active' : '' }}">Accueil</a>
-                            <a href="/home" class="nav-item nav-link {{ Request::is('home') ? 'active' : '' }}">Espace
+                            <a href="/" class="nav-item nav-link  {{ Request::is('/') ? 'active' : '' }}">Accueil</a>
+                            <a href="/home" class="nav-item nav-link  {{ Request::is('home') ? 'active' : '' }}">Espace
                                 admin</a>
                         @endif
 
@@ -121,10 +201,22 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Notifications <span class="badge badge-danger"> </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li> --}}
+
                         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                            class="nav-item nav-link d-flex align-items-center " style="font-weight: bold">
+                            class="nav-item nav-link  d-flex align-items-center " style="font-weight: bold">
                             <i class='bx bx-log-out-circle px-2' style="font-size: 20px"></i>
-                            <span>{{ Auth::user()->name }}</span>
+                            <span>{{ Auth::user()->name . ' ' . Auth::user()->firstname }}</span>
                         </a>
                     @endguest
                 </ul>
@@ -214,10 +306,10 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
 
 
 </body>

@@ -16,27 +16,35 @@
 
                         <form action="/eleves" method="post">
                             @csrf
+
                             <div class="form-group m-2">
-                                <label for="">Nom et Prénom</label>
-                                <input type="text" name="name" class="form-control">
+                                <label for="">Nom </label>
+                                <input type="text" value="{{ old('name') }}" name="name" class="form-control">
                                 @if ($errors->has('name'))
                                     <span class="text-danger m-2">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
 
+                            <div class="form-group m-2">
+                                <label for="">Prénom </label>
+                                <input type="text" value="{{ old('firstname') }}" name="firstname" class="form-control">
+                                @if ($errors->has('firstname'))
+                                    <span class="text-danger m-2">{{ $errors->first('firstname') }}</span>
+                                @endif
+                            </div>
 
                             <div class="form-group m-2">
                                 <label for="">Email</label>
-                                <input type="email" name="email" class="form-control">
+                                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
                                 @if ($errors->has('email'))
                                     <span class="text-danger m-2">{{ $errors->first('email') }}</span>
                                 @endif
 
                             </div>
 
-                            <div class="form-group m-2">
+                            {{-- <div class="form-group m-2">
                                 <label for="">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" value="{{ old('password') }}" name="password" class="form-control">
                                 @if ($errors->has('password'))
                                     <span class="text-danger m-2">{{ $errors->first('password') }}</span>
                                 @endif
@@ -51,11 +59,12 @@
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="form-group m-2">
                                 <label for="">{{ __('Telephone (optionnel)') }}</label>
-                                <input type="number" min=0 name="telephone" class="form-control">
+                                <input type="number" min=0 value="{{ old('nom') }}" name="telephone"
+                                    class="form-control">
                                 @if ($errors->has('telephone'))
                                     <span class="text-danger m-2">{{ $errors->first('telephone') }}</span>
                                 @endif
@@ -70,7 +79,7 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($parents as $parent)
                                         <option value="{{ $parent->id }}">
-                                            {{ $parent->name }}</option>
+                                            {{ $parent->name . ' ' . $parent->firstname }}</option>
                                     @endforeach
 
                                 </select>

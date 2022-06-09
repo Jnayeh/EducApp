@@ -25,7 +25,11 @@
                                 <td>{{ $classe->niveau }}</td>
                                 <td>
                                     @if ($classe->emploi_elv)
-                                        <img src="{{ url($classe->emploi_elv) }}" height="50px">
+                                        @if (Str::endsWith($classe->emploi_elv, 'pdf') | Str::endsWith($classe->emploi_elv, 'doc') | Str::endsWith($classe->emploi_elv, 'docx'))
+                                            <img src="{{ url('doc.jpg') }}" alt="document" height="30px">
+                                        @else
+                                            <img src="{{ url($classe->emploi_elv) }}" height="30px" alt="photo">
+                                        @endif
                                     @else
                                         <i>Ajouter un emploi</i>
                                     @endif

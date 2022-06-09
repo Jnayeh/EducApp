@@ -42,7 +42,7 @@
                                     @foreach ($professeurs as $professeur)
                                         <option value="{{ $professeur->id }}"
                                             {{ $professeur->id == $reclamation->professeur_id ? 'selected' : '' }}>
-                                            {{ $professeur->name }}</option>
+                                            {{ $professeur->name . ' ' . $professeur->firstname }}</option>
                                     @endforeach
 
                                 </select>
@@ -59,7 +59,7 @@
                                     @foreach ($eleves as $eleve)
                                         <option value="{{ $eleve->id }}"
                                             {{ $eleve->id == $reclamation->eleve_id ? 'selected' : '' }}>
-                                            {{ $eleve->name }}</option>
+                                            {{ $eleve->name . ' ' . $eleve->firstname }}</option>
                                     @endforeach
 
                                 </select>

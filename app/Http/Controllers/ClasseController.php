@@ -40,7 +40,7 @@ class ClasseController extends Controller
         $request->validate([
             'nom' => 'required',
             'niveau' => 'required',
-            'emploi_elv' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'emploi_elv' => 'mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
         ]);
         $classe = new Classe();
         $classe->fill($request->all());
@@ -81,7 +81,7 @@ class ClasseController extends Controller
         $request->validate([
             'nom' => 'required',
             'niveau' => 'required',
-            'emploi_elv' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'emploi_elv' => 'mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
         ]);
 
         $classe = Classe::find($id);

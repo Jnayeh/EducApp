@@ -50,7 +50,7 @@
                                     @foreach ($eleves as $eleve)
                                         <option value="{{ $eleve->id }}"
                                             {{ $eleve->id == $reclamation->eleve_id ? 'selected' : '' }}>
-                                            {{ $eleve->name }}</option>
+                                            {{ $eleve->name . ' ' . $eleve->firstname }}</option>
                                     @endforeach
 
                                 </select>

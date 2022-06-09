@@ -28,7 +28,7 @@
                         </p>
                         <p><strong>Parent:</strong>
                             @if ($eleve->parent)
-                                {{ $eleve->parent->name }}
+                                {{ $eleve->parent->name . ' ' . $eleve->parent->firstname }}
                             @else
                                 <i>Affecter un parent</i>
                             @endif

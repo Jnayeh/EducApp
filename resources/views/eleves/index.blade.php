@@ -23,12 +23,12 @@
                         @foreach ($eleves as $eleve)
                             <tr>
                                 <td>{{ $eleve->id }}</td>
-                                <td>{{ $eleve->name }}</td>
+                                <td>{{ $eleve->name . ' ' . $eleve->firstname }}</td>
                                 <td>{{ $eleve->email ?? "N'a pas d'email" }}</td>
                                 <td>{{ $eleve->telephone ?? "N'a pas du telephone" }}</td>
                                 <td>
                                     @if ($eleve->parent)
-                                        {{ $eleve->parent->name }}
+                                        {{ $eleve->parent->name . ' ' . $eleve->parent->firstname }}
                                     @else
                                         <i>Affecter un parent</i>
                                     @endif

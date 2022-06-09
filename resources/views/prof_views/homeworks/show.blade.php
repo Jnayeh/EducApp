@@ -21,10 +21,8 @@
                             </div>
                         @endif
 
-                        <div class="m-2 d-flex justify-content-center">
-                            <img src="{{ url($home_work->photo) }}" width="300px">
-                        </div>
-                        @foreach ($home_work->professeur->classes as $classe)
+
+                        @foreach ($home_work->classes as $classe)
                             <h3 class="mt-4">Classe: {{ $classe->nom }}</h3>
                             @foreach ($eleves as $eleve)
                                 @if ($classe->id == $eleve->classe_id)
@@ -39,27 +37,38 @@
 
                             @foreach ($home_work->reponses as $reponse)
                                 <div class="card ">
-                                    <img src="{{ url($reponse->photo) }}" class="card-img-top card-image " alt="photo">
+                                    @if (Str::endsWith($reponse->photo, 'pdf') | Str::endsWith($reponse->photo, 'doc') | Str::endsWith($reponse->photo, 'docx'))
+                                        <img src="{{ url('doc.jpg') }}" class="card-img-top card-image " alt="document">
+                                    @else
+                                        <img src="{{ url($reponse->photo) }}" class="card-img-top card-image "
+                                            alt="photo">
+                                    @endif
                                     <div class="card-body">
 
                                         <p class="card-text ">
-                                            Reponse d'eleve: <span>{{ $reponse->eleve->name }}</span>
+                                            Réponse d'eleve:
+                                            <span>{{ $reponse->eleve->name . ' ' . $reponse->eleve->firstname }}</span>
                                         </p>
                                     </div>
 
                                     <div class="card-body d-flex flex-column justify-content-end g-2">
-                                        <div>
-                                            <a href="{{ url($reponse->photo) }}" target="blank"
-                                                class="btn btn-outline-primary mx-1">Afficher</a>
 
-                                        </div>
+                                        <a href="/download/{{ $reponse->photo }}" target="blank"
+                                            class="btn btn-outline-primary mx-1">Telecharger</a>
+
                                     </div>
 
-                                    <div class="card-footer text-center text-muted">Crée le:
-                                        {{ date('Y-m-d', strtotime($reponse->created_at)) }}
+                                    <div class="card-footer text-center text-muted">Ajoutée le:
+                                        {{ date('d-m-Y', strtotime($reponse->created_at)) }}
                                     </div>
                                 </div>
                             @endforeach
+
+                            @if (count($home_work->reponses) == 0)
+                                <div class='d-flex flex-column justify-content-center' style='height:100px;margin:0px'>
+                                    <h2 style='max-width:70vw; margin: auto; text-align:center'>Il y'a aucune réponse</h2>
+                                </div>
+                            @endif
 
                         </div>
 

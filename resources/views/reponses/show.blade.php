@@ -17,7 +17,7 @@
                         <h3 class="font-monospace text-center "> {{ $reponse->eleve->name }}</h3>
 
                         <div class="m-2 d-flex justify-content-center">
-                            <img src="{{ url($reponse->photo) }}" width="300px">
+                            <a href="{{ url($reponse->photo) }}" target="_blank"><i class='bx bx-link-external'></i></a>
                         </div>
                     </div>
                 </div>

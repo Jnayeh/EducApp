@@ -15,7 +15,8 @@
                         @endif
 
                         <h2 class="font-h2"><strong>Nom:</strong> </h2>
-                        <h3 class="font-monospace text-center "> {{ $professeur->name }}</h3>
+                        <h3 class="font-monospace text-center "> {{ $professeur->name . ' ' . $professeur->firstname }}
+                        </h3>
 
                         <p><strong>Email:</strong> {{ $professeur->email }}</p>
                         <p><strong>Telephone:</strong> {{ $professeur->telephone }}</p>

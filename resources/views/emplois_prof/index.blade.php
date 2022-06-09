@@ -10,7 +10,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Image</th>
+                            <th>Document</th>
                             <th>Professeur</th>
                             <th>Created at</th>
                             <th class="text-center">Action</th>
@@ -21,9 +21,13 @@
                             <tr>
                                 <td>{{ $emploi->id }}</td>
                                 <td>
-                                    <img src="{{ url($emploi->photo) }}" height="50px">
+                                    @if (Str::endsWith($emploi->photo, 'pdf') | Str::endsWith($emploi->photo, 'doc') | Str::endsWith($emploi->photo, 'docx'))
+                                        <img src="{{ url('doc.jpg') }}" alt="document" height="30px">
+                                    @else
+                                        <img src="{{ url($emploi->photo) }}" height="30px" alt="photo">
+                                    @endif
                                 </td>
-                                <td>{{ $emploi->professeur->name }}</td>
+                                <td>{{ $emploi->professeur->name . ' ' . $emploi->professeur->firstname }}</td>
                                 <td>{{ date('Y-m-d', strtotime($emploi->created_at)) }}</td>
                                 <td class="d-flex justify-content-center gap-md-2">
                                     <a href="emplois_prof/{{ $emploi->id }}" class="btn btn-outline-secondary">Afficher</a>

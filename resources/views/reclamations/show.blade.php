@@ -16,9 +16,11 @@
 
 
                         <h3 class="font-h2"><strong>Nom d'éleve:</strong> </h3>
-                        <h4 class="font-monospace mx-4"> {{ $reclamation->eleve->name }}</h4>
+                        <h4 class="font-monospace mx-4">
+                            {{ $reclamation->eleve->name . ' ' . $reclamation->eleve->firstname }}</h4>
                         <h3 class="font-h2"><strong>Nom du professeur:</strong> </h3>
-                        <h4 class="font-monospace mx-4"> {{ $reclamation->professeur->name }}</h4>
+                        <h4 class="font-monospace mx-4">
+                            {{ $reclamation->professeur->name . ' ' . $reclamation->professeur->firstname }}</h4>
 
                         <div class="d-flex">
                             <h4 class="font-h4"><strong>Titre:</strong> </h4>

@@ -29,4 +29,9 @@ class Classe extends Model
     {
         return $this->belongsToMany(Professeur::class);
     }
+
+    public function homeWorks()
+    {
+        return $this->belongsToMany(HomeWork::class);
+    }
 }

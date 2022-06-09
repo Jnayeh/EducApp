@@ -26,9 +26,9 @@
                             @csrf
 
                             <div class="form-group m-2">
-                                <label for="">Photo</label>
+                                <label for="">Document</label>
                                 <input type="file" min=0 step="0.01" name="photo" class="form-control"
-                                    onchange="fileChange(event)">
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx" onchange="fileChange(event)">
                                 @error('photo')
                                     <div class="text-danger m-2">{{ $message }}</div>
                                 @enderror
@@ -46,7 +46,7 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($eleves as $eleve)
                                         <option value="{{ $eleve->id }}">
-                                            {{ $eleve->name }}</option>
+                                            {{ $eleve->name . ' ' . $eleve->firstname }}</option>
                                     @endforeach
 
                                 </select>
@@ -64,7 +64,7 @@
                                     <option value="">Choisir...</option>
                                     @foreach ($homeWorks as $homeWork)
                                         <option value="{{ $homeWork->id }}">
-                                            {{ $homeWork->name }}</option>
+                                            {{ $homeWork->id }}</option>
                                     @endforeach
 
                                 </select>

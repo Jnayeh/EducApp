@@ -4,11 +4,11 @@
     <script>
         function fileChange(e) {
             let img = document.getElementById('img');
-            img.src = window.URL.createObjectURL(e.target.files[0]);
+            img.href = window.URL.createObjectURL(e.target.files[0]);
             document.getElementById('img-holder').className = "m-2 d-flex justify-content-center";
         }
     </script>
-    <div class="container">
+    <div class="container mt-5">
 
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -26,15 +26,28 @@
                             @csrf
 
                             <div class="form-group m-2">
-                                <label for="">Photo</label>
+                                <label for="">Pour les classes: </label>
+                                @foreach ($prof->classes as $classe)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="classes[]"
+                                            value="{{ $classe->id }}" id="{{ $classe->id }}">
+                                        <label class="form-check-label" for="{{ $classe->id }}">
+                                            {{ $classe->nom . ' niveau: ' . $classe->niveau }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="form-group m-2">
+                                <label for="">Document</label>
                                 <input type="file" min=0 step="0.01" name="photo" class="form-control"
-                                    onchange="fileChange(event)">
+                                    accept=".jpeg,.png,.jpg,.gif,.pdf,.doc,.docx" onchange="fileChange(event)">
                                 @error('photo')
                                     <div class="text-danger m-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div id="img-holder" class="d-none">
-                                <img src="" id="img" height="100px">
+                                <a id="img" href="" target="_blank"><i class='bx bx-link-external'></i></a>
                             </div>
 
                             <input type="hidden" name="professeur_id" value="{{ $prof->id }}">

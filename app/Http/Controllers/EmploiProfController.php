@@ -34,7 +34,7 @@ class EmploiProfController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'required|mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
             'professeur_id' => 'required|unique:emploi_profs',
 
         ]);
@@ -58,9 +58,27 @@ class EmploiProfController extends Controller
         return view('emplois_prof.show', compact('emploi'));
     }
 
-    public function showByProf($id)
+    public function showByProf()
     {
-        return EmploiProf::with('professeur')->where('professeur_id', $id)->first();
+        $prof = Professeur::with('emploiProf')->where('email', auth()->user()->email)->first();
+        if ($prof->emploiProf && $prof->emploiProf->photo) {
+            /* url($prof->emploiProf->photo) */
+            return redirect("/download/" . $prof->emploiProf->photo);
+        }
+
+        return "<html>
+                    <head>
+                        <meta charset='utf-8'>
+                        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+                        <!-- Bootstrap Stylesheet -->
+                        <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'> 
+                    </head>
+
+                    <body class='d-flex flex-column justify-content-center' style='height:100vh;margin:0px'>
+                        <h1 style='max-width:70vw; margin: auto; text-align:center'>Vous avez aucun emploi</h1>
+                    </body>
+                </html>";
     }
 
     public function edit($id)
@@ -76,7 +94,7 @@ class EmploiProfController extends Controller
     public function update($id, Request $request)
     {
         $request->validate([
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo' => 'nullable|mimes:docx,doc,jpeg,png,jpg,gif,pdf,,zip|max:20480',
             //'professeur_id' => 'required|unique:emploi_profs,' . $id,
 
         ]);

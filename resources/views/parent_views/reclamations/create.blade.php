@@ -28,7 +28,7 @@
 
                             <div class="form-group m-2">
                                 <label for="">Details </label>
-                                <textarea name="details" class="form-control" rows="4" placeholder="Les details sur la eclamations svp!!"></textarea>
+                                <textarea name="details" class="form-control" rows="4" placeholder="Les details sur la reclamation svp!!"></textarea>
                                 @if ($errors->has('details'))
                                     <span class="text-danger m-2">{{ $errors->first('details') }}</span>
                                 @endif
@@ -77,7 +77,8 @@
                                                     $.each(data, function(i, professeur) {
                                                         let node = document.createElement("option");
                                                         node.setAttribute("value", professeur.id);
-                                                        let textnode = document.createTextNode(professeur.name);
+                                                        let textnode = document.createTextNode(professeur.name + " " +
+                                                            professeur.firstname);
                                                         node.appendChild(textnode);
                                                         document.getElementById("prof_list").appendChild(node);
                                                     });

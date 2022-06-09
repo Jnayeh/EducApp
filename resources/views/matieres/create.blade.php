@@ -18,12 +18,13 @@
                             @csrf
                             <div class="form-group m-2">
                                 <label for="">Nom </label>
-                                <input type="text" name="nom" class="form-control">
+                                <input type="text" value="{{ old('nom') }}" name="nom" class="form-control">
                             </div>
 
                             <div class="form-group m-2">
                                 <label for="">Coefficient</label>
-                                <input type="number" min=0 step="0.5" name="coefficient" class="form-control">
+                                <input type="number" min=0 step="0.5" value="{{ old('coefficient') }}" name="coefficient"
+                                    class="form-control">
                             </div>
 
                             <button type="submit" class="btn btn-primary mt-2 w-100">Ajouter</button>

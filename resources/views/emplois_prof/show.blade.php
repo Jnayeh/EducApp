@@ -14,15 +14,15 @@
                             </div>
                         @endif
                         <h2 class="font-h2"><strong>Nom du professeur:</strong> </h2>
-                        <h3 class="font-monospace text-center "> {{ $emploi->professeur->name }}</h3>
+                        <h3 class="font-monospace text-center ">
+                            {{ $emploi->professeur->name . ' ' . $emploi->professeur->firstname }}</h3>
 
                         <div class="m-2 d-flex justify-content-center">
-                            <img src="{{ url($emploi->photo) }}" width="300px">
+                            <a href="{{ url($emploi->photo) }}" target="_blank"><i class='bx bx-link-external'></i></a>
                         </div>
 
                     </div>
                     <div class="d-flex justify-content-end">
-
                         <a href=" {{ route('emplois_prof') }}" class="btn btn-outline-dark m-2">Retour</a>
                     </div>
                 </div>

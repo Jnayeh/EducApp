@@ -5,23 +5,26 @@
     <div class="container-fluid bg-primary px-0 px-md-5 mb-5">
         <div class="row align-items-center px-3">
             <div class="col-lg-6 text-center text-lg-left">
-                <h1 class="display-3 font-weight-bold text-white mt-5 mt-lg-0">Une Nouvelle Perspective Pour
+                <h1 class="display-4 font-weight-bold text-white mt-5 mt-lg-0">Une Nouvelle Perspective Pour
                     l'Education
                     Des Enfants</h1>
                 <p class="text-white mb-4">Notre service est une service générale et conveniente pour la
                     facilitation
                     des cours.</p>
-                <a href="/about" class="btn btn-secondary mt-1 py-3 px-5">En savoir plus</a>
+                <div class="d-grid d-md-block">
+                    <a href="/login" class="btn btn-success mx-1 mb-2">Espace Parent</a>
+                    <a href="/login" class="btn btn-warning mx-1 mb-2">Espace Professeur</a>
+                    <a href="/login" class="btn btn-danger mx-1 mb-2">Espace Administration</a>
+                </div>
             </div>
             <div class="col-lg-6 text-center text-lg-right">
-                <img class="img-fluid mt-5" src="img/header.png" alt="">
+                <img class="img-fluid mt-5 mb-3" src="img/header.png" alt="">
             </div>
         </div>
     </div>
     <!-- Header End -->
 
-
-    <!-- Facilities Start -->
+    {{-- <!-- Facilities Start -->
     <div class="container-fluid pt-5">
         <div class="container pb-3">
             <div class="row">
@@ -76,7 +79,7 @@
             </div>
         </div>
     </div>
-    <!-- Facilities Start -->
+    <!-- Facilities Start --> --}}
 
 
     <!-- About Start -->
@@ -113,8 +116,7 @@
     </div>
     <!-- About End -->
 
-
-    <!-- Class Start -->
+    {{-- <!-- Class Start -->
     <div class="container-fluid pt-5">
         <div class="container">
             <div class="text-center pb-2">
@@ -285,5 +287,5 @@
             </div>
         </div>
     </div>
-    <!-- Team End -->
+    <!-- Team End --> --}}
 @endsection

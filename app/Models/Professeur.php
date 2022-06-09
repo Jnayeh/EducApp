@@ -15,6 +15,7 @@ class Professeur extends Model
      */
     protected $fillable = [
         'name',
+        'firstname',
         'telephone',
         'role',
         'email',
@@ -56,5 +57,4 @@ class Professeur extends Model
     {
         return $this->hasMany(Reclamation::class);
     }
-
 }
